@@ -1,9 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Smartphone, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Heart } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+
+  const handleHeartClick =()=>{
+    navigate('/login');
+  }
 
   const footerLinks = {
     about: [
@@ -217,7 +223,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center justify-between text-sm text-gray-400">
             <div className="flex items-center space-x-1 mb-2 md:mb-0">
               <span>© {currentYear} Digitus. Made with</span>
-              <Heart className="w-4 h-4 text-red-500 fill-current" />
+              <Heart onClick={handleHeartClick} className="w-4 h-4 text-red-500 fill-current" />
               <span>for digital inclusion.</span>
             </div>
             <div className="flex space-x-6">
