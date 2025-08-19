@@ -22,9 +22,9 @@ const Services: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900  mb-6">
-            What We Do
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900  mb-10">
+          Our Mission: Digital Confidence for All
+                    </h2>
           <p className="text-xl text-gray-600  max-w-3xl mx-auto">
             Our comprehensive approach combines education, infrastructure, and
             ongoing support to ensure lasting digital literacy in every

@@ -42,7 +42,7 @@ const CallToAction: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-10">
             {callToActionData.title}
           </h2>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto">

@@ -39,62 +39,57 @@ export const services: Service[] = [
   {
     id: 1,
     title: "Mindset Change Workshops",
-    description: "Interactive sessions that build confidence and enthusiasm for digital learning, helping participants overcome technology anxiety.",
-    image: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800",
+    description: "Engaging, interactive sessions designed to build confidence and excitement for digital learning, helping participants overcome technology anxiety.",
+    image: "./../img/mindset.png",
     icon: "Users"
   },
   {
     id: 2,
     title: "Guidance to National Facilities",
-    description: "Connect learners with government-sponsored digital training centers and free educational resources in their area.",
-    image: "https://images.pexels.com/photos/8349271/pexels-photo-8349271.jpeg?auto=compress&cs=tinysrgb&w=800",
+    description: "Connecting learners with nearby government-sponsored digital training centers and free educational resources to continue their learning journey.",
+    image: "../../img/facilities.png",
     icon: "MapPin"
   },
   {
     id: 3,
     title: "Local Digital Hubs",
-    description: "Establish community centers with free devices and internet access where learners can practice and continue their digital journey.",
+    description: "Community centers equipped with free devices and internet access where learners can practice, explore, and continue developing their digital skills.",
     image: "https://images.pexels.com/photos/7688460/pexels-photo-7688460.jpeg?auto=compress&cs=tinysrgb&w=800",
     icon: "Wifi"
   },
   {
     id: 4,
     title: "Competitions & Awards",
-    description: "Regular contests and recognition programs that motivate continued learning and celebrate digital achievements.",
-    image: "https://images.pexels.com/photos/8349272/pexels-photo-8349272.jpeg?auto=compress&cs=tinysrgb&w=800",
+    description: "Fun contests and recognition programs that encourage ongoing learning and celebrate learners’ digital achievements.",
+    image: "../../img/trophy.jpeg",
+    
     icon: "Award"
   }
 ];
 
 export const processSteps: ProcessStep[] = [
-  {
-    id: 1,
-    title: "Community Arrival",
-    description: "Our expert team arrives in your community for an intensive 2-4 week digital literacy program, setting up mobile learning stations and conducting initial assessments.",
-    duration: "Week 1",
-    image: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800"
-  },
-  {
-    id: 2,
-    title: "Intensive Training",
-    description: "Daily hands-on workshops covering smartphone basics, internet safety, online banking, video calling, and essential digital services.",
-    duration: "Weeks 2-3",
-    image: "https://images.pexels.com/photos/8349271/pexels-photo-8349271.jpeg?auto=compress&cs=tinysrgb&w=800"
-  },
-  {
-    id: 3,
-    title: "Hub Establishment",
-    description: "Before moving to the next community, we establish a permanent digital hub with devices, internet access, and trained local volunteers.",
-    duration: "Week 4",
-    image: "https://images.pexels.com/photos/7688460/pexels-photo-7688460.jpeg?auto=compress&cs=tinysrgb&w=800"
-  },
-  {
-    id: 4,
-    title: "Ongoing Support",
-    description: "Regular virtual check-ins, monthly competitions, and continuous support through our network of digital hubs and online resources.",
-    duration: "Ongoing",
-    image: "https://images.pexels.com/photos/8349272/pexels-photo-8349272.jpeg?auto=compress&cs=tinysrgb&w=800"
-  }
+ {
+  id: 1,
+  title: "Community Arrival",
+  description: "Our dedicated team visits your community to help those struggling with digital illiteracy. We set up mobile learning stations and carry out friendly assessments to understand each learner’s needs.",
+  duration: "Week 1",
+  image: "../../img/communityArrival.webp"
+},
+{
+  id: 2,
+  title: "Guided Learning",
+  description: "Supportive, hands-on workshops that cover everyday essentials like using a smartphone, staying safe online, accessing digital services, video calling loved ones, and online banking.",
+  duration: "Weeks 2–3",
+  image: "../../img/guidedLearning.jpeg"
+},
+{
+  id: 3,
+  title: "Continued Support",
+  description: "We don’t stop after training. Learners receive ongoing guidance through regular check-ins, fun monthly challenges, and access to our network of digital hubs and online resources.",
+  duration: "Ongoing",
+  image: "../../img/continuedSupport.png"
+}
+
 ];
 
 export const locations: Location[] = [

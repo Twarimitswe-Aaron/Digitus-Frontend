@@ -15,7 +15,7 @@ const Process: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900  mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900  mb-10">
             How It Works
           </h2>
           <p className="text-xl text-gray-600  max-w-3xl mx-auto">
@@ -36,7 +36,7 @@ const Process: React.FC = () => {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
               className={`relative mb-16 lg:mb-24 ${
-                index % 2 === 0 ? 'lg:pr-1/2' : 'lg:pl-1/2 lg:text-right'
+                index % 2 === 0 ? 'lg:pr-1/2' : 'lg:pl-[225px] lg:text-right'
               }`}
             >
               {/* Timeline Dot */}
@@ -45,7 +45,7 @@ const Process: React.FC = () => {
               {/* Content Card */}
               <motion.div
                 whileHover={{ y: -5 }}
-                className={`bg-[#08083C] rounded-md p-8 ${
+                className={`bg-[#08083C] rounded-md p-8 w-full lg:max-w-[1000px] ${
                   index % 2 === 0 ? 'lg:mr-12' : 'lg:ml-12'
                 }`}
               >
