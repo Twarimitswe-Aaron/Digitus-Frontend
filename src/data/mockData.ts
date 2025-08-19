@@ -188,7 +188,7 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const heroData = {
-  headline: "Empowering Everyone in the Digital Age",
+  headline: "Empowering [Everyone] in the Digital Age",
   subheadline: "Breaking down barriers and building bridges to digital literacy for older adults in communities across the nation.",
   ctaText: "Join the Movement",
   backgroundImage: "https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=1920"
