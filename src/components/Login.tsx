@@ -16,6 +16,7 @@ const Login = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
+    console.log(formData)
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -129,9 +130,9 @@ const Login = () => {
           muted
           playsInline
         ></video>
-        <div className="absolute inset-0 bg-[#08083C]/20 flex items-center justify-center p-12">
+        <div className="absolute inset-0 backdrop-blur-2 flex items-center justify-center p-12">
           <div className="text-center text-white max-w-lg">
-            <h2 className="text-3xl font-bold mb-4 text-[#08083C] ">Become a Volunteer Trainer</h2>
+            <h2 className="text-5xl  font-bold mb-4 text-[#08083C] ">Become a Volunteer Trainer</h2>
             <p className="text-white/80 text-lg leading-relaxed">
               Share your skills, inspire others, and make an impact by training as a volunteer. 
               Join our mission to empower learners and create meaningful change through education.

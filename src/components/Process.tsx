@@ -51,8 +51,10 @@ const Process: React.FC = () => {
     "focus:border-white focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200 [&>option]:text-black [&>option]:bg-white";
   
   const buttonClasses =
-    "w-full bg-white text-[#08083C] py-4 rounded-md hover:bg-white/90 cursor-pointer " +
-    "focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200 font-medium backdrop-blur-sm";
+    "relative isolate overflow-hidden w-full bg-white text-[#08083C] py-4 rounded-md cursor-pointer " +
+    "focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-300 font-medium backdrop-blur-sm hover:text-white " +
+    "before:content-[''] before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-[#08083C] before:rounded-md " +
+    "before:transition-[width] before:duration-300 before:ease-out hover:before:w-full";
 
   const handleProvinceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedProvince = e.target.value;
@@ -140,15 +142,7 @@ const Process: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
 
-                  {/* Learn More Link */}
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200"
-                  >
-                    <span>Learn More</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </motion.button>
+                
                 </div>
               </motion.div>
             </motion.div>
@@ -181,7 +175,7 @@ const Process: React.FC = () => {
       {visitModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className="border border-gray-600 backdrop-blur-sm bg-white/15 rounded-xl p-6 w-full max-w-md shadow-lg relative">
-            <h2 className="text-xl font-bold mb-4 text-white">Request Our Services</h2>
+            <h2 className="text-xl font-bold mb-4 text-white">Schedule a Visit</h2>
             <div className="space-y-6 bg-transparent">
               {/* Name */}
               <div className="relative">
@@ -242,7 +236,7 @@ const Process: React.FC = () => {
 
               {/* Submit */}
               <button type="submit" className={buttonClasses}>
-                Submit Request
+                <span className="relative z-10">Submit Request</span>
               </button>
             </div>
             <button

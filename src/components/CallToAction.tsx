@@ -45,13 +45,13 @@ const CallToAction: React.FC = () => {
       setDonateForm({ ...donateForm, [name]: value });
     } else if (formType === "Join Training") {
       setTrainingForm({ ...trainingForm, [name]: value });
-      console.log(trainingForm)
+      console.log(trainingForm);
     }
   };
 
   const handleSubmit = (e: React.FormEvent, formType: string) => {
     e.preventDefault();
-    let data = {};
+    let data = {} as Record<string, unknown>;
 
     if (formType === "Volunteer") data = volunteerForm;
     if (formType === "Donate Devices") data = donateForm;
@@ -73,16 +73,16 @@ const CallToAction: React.FC = () => {
       .catch((err) => console.error("Error:", err));
   };
 
-  const inputClasses =
-    "w-full border border-white/50 text-white placeholder-white/70 rounded-md py-2 px-4 bg-transparent backdrop-blur-sm " +
-    "focus:border-white focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200";
 
-  const buttonClasses =
-    "w-full bg-white text-[#08083C] py-4 rounded-md hover:bg-white/90 cursor-pointer " +
-    "focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200 font-medium backdrop-blur-sm";
-
-  // Render forms
   const renderForm = () => {
+    const inputClasses =
+      "w-full border border-white/50 text-white placeholder-white/70 rounded-md py-2 px-4 bg-transparent backdrop-blur-sm " +
+      "focus:border-white focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200";
+  
+    const buttonClasses =
+      "w-full bg-white text-[#08083C] py-4 rounded-md hover:bg-white/90 cursor-pointer " +
+      "focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200 font-medium backdrop-blur-sm";
+  
     switch (openForm) {
       case "Volunteer":
         return (
@@ -115,7 +115,7 @@ const CallToAction: React.FC = () => {
               className={`${inputClasses} resize-none`}
             />
             <button type="submit" className={buttonClasses}>
-              Submit Application
+              <span className="relative z-10">Submit Application</span>
             </button>
           </form>
         );
@@ -159,7 +159,7 @@ const CallToAction: React.FC = () => {
               className={inputClasses}
             />
             <button type="submit" className={buttonClasses}>
-              Donate Device
+              <span className="relative z-10">Donate Device</span>
             </button>
           </form>
         );
@@ -195,7 +195,7 @@ const CallToAction: React.FC = () => {
               className={inputClasses}
             />
             <button type="submit" className={buttonClasses}>
-              Register
+              <span className="relative z-10">Register</span>
             </button>
           </form>
         );

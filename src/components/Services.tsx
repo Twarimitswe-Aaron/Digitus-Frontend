@@ -54,8 +54,10 @@ const Services: React.FC = () => {
     "focus:border-white focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200 [&>option]:text-black [&>option]:bg-white";
   
     const buttonClasses =
-      "w-full bg-white text-[#08083C] py-4 rounded-md hover:bg-white/90 cursor-pointer " +
-      "focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200 font-medium backdrop-blur-sm";
+      "relative isolate overflow-hidden w-full bg-white text-[#08083C] py-4 rounded-md cursor-pointer " +
+      "focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-300 font-medium backdrop-blur-sm hover:text-white " +
+      "before:content-[''] before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-[#08083C] before:rounded-md " +
+      "before:transition-[width] before:duration-300 before:ease-out hover:before:w-full";
 
   const handleProvinceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedProvince = e.target.value;
@@ -221,7 +223,7 @@ const Services: React.FC = () => {
 
               {/* Submit */}
               <button type="submit" className={buttonClasses}>
-                Submit Request
+                <span className="relative z-10">Submit Request</span>
               </button>
             </div>
             <button
