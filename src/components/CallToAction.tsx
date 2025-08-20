@@ -12,87 +12,198 @@ const iconMap = {
 const CallToAction: React.FC = () => {
   const [openForm, setOpenForm] = useState<string | null>(null);
 
+  // Separate form states for each form
+  const [volunteerForm, setVolunteerForm] = useState({
+    fullName: "",
+    email: "",
+    skills: "",
+  });
+
+  const [donateForm, setDonateForm] = useState({
+    fullName: "",
+    email: "",
+    deviceType: "",
+    quantity: "",
+  });
+
+  const [trainingForm, setTrainingForm] = useState({
+    registerName: "",
+    participantName: "",
+    email: "",
+  });
+
+  // Handlers
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    formType: string
+  ) => {
+    const { name, value } = e.target;
+
+    if (formType === "Volunteer") {
+      setVolunteerForm({ ...volunteerForm, [name]: value });
+    } else if (formType === "Donate Devices") {
+      setDonateForm({ ...donateForm, [name]: value });
+    } else if (formType === "Join Training") {
+      setTrainingForm({ ...trainingForm, [name]: value });
+      console.log(trainingForm);
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent, formType: string) => {
+    e.preventDefault();
+    let data = {} as Record<string, unknown>;
+
+    if (formType === "Volunteer") data = volunteerForm;
+    if (formType === "Donate Devices") data = donateForm;
+    if (formType === "Join Training") data = trainingForm;
+
+    console.log("Submitting:", { formType, ...data });
+
+    // Example API call
+    fetch("/api/submit-form", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ formType, ...data }),
+    })
+      .then((res) => res.json())
+      .then((resData) => {
+        console.log("Success:", resData);
+        setOpenForm(null);
+      })
+      .catch((err) => console.error("Error:", err));
+  };
+
 
   const renderForm = () => {
     const inputClasses =
       "w-full border border-white/50 text-white placeholder-white/70 rounded-md py-2 px-4 bg-transparent backdrop-blur-sm " +
       "focus:border-white focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200";
   
-      const buttonClasses =
-    "relative isolate overflow-hidden w-full bg-white text-[#08083C] py-4 rounded-md cursor-pointer " +
-    "focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-300 font-medium backdrop-blur-sm hover:text-white " +
-    "before:content-[''] before:absolute before:inset-y-0 before:left-0 before:w-0 before:bg-[#08083C] before:rounded-md " +
-    "before:transition-[width] before:duration-300 before:ease-out hover:before:w-full";
-  
+    const buttonClasses =
+      "w-full bg-white text-[#08083C] py-4 rounded-md hover:bg-white/90 cursor-pointer " +
+      "focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200 font-medium backdrop-blur-sm";
   
     switch (openForm) {
       case "Volunteer":
         return (
-          <div className="space-y-6 bg-transparent">
-            <div className="relative">
-              <input type="text" placeholder="Full Name" className={inputClasses} />
-            </div>
-            <div className="relative">
-              <input type="email" placeholder="Email Address" className={inputClasses} />
-            </div>
-            <div className="relative">
-              <textarea
-                placeholder="Which skills can you teach?"
-                rows={4}
-                className={`${inputClasses} resize-none`}
-              ></textarea>
-            </div>
+          <form
+            onSubmit={(e) => handleSubmit(e, "Volunteer")}
+            className="space-y-6 bg-transparent"
+          >
+            <input
+              type="text"
+              name="fullName"
+              placeholder="Full Name"
+              value={volunteerForm.fullName}
+              onChange={(e) => handleChange(e, "Volunteer")}
+              className={inputClasses}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={volunteerForm.email}
+              onChange={(e) => handleChange(e, "Volunteer")}
+              className={inputClasses}
+            />
+            <textarea
+              name="skills"
+              placeholder="Which skills can you teach?"
+              rows={4}
+              value={volunteerForm.skills}
+              onChange={(e) => handleChange(e, "Volunteer")}
+              className={`${inputClasses} resize-none`}
+            />
             <button type="submit" className={buttonClasses}>
               <span className="relative z-10">Submit Application</span>
             </button>
-          </div>
+          </form>
         );
-  
+
       case "Donate Devices":
         return (
-          <div className="space-y-6 bg-transparent">
-            <div className="relative">
-              <input type="text" placeholder="Full Name" className={inputClasses} />
-            </div>
-            <div className="relative">
-              <input type="email" placeholder="Email Address" className={inputClasses} />
-            </div>
-            <div className="relative">
-              <input type="text" placeholder="Type of Device (Tablet, Smartphone, etc.)" className={inputClasses} />
-            </div>
-            <div className="relative">
-              <input type="number" placeholder="Quantity" className={inputClasses} />
-            </div>
+          <form
+            onSubmit={(e) => handleSubmit(e, "Donate Devices")}
+            className="space-y-6 bg-transparent"
+          >
+            <input
+              type="text"
+              name="fullName"
+              placeholder="Full Name"
+              value={donateForm.fullName}
+              onChange={(e) => handleChange(e, "Donate Devices")}
+              className={inputClasses}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={donateForm.email}
+              onChange={(e) => handleChange(e, "Donate Devices")}
+              className={inputClasses}
+            />
+            <input
+              type="text"
+              name="deviceType"
+              placeholder="Type of Device (Tablet, Smartphone, etc.)"
+              value={donateForm.deviceType}
+              onChange={(e) => handleChange(e, "Donate Devices")}
+              className={inputClasses}
+            />
+            <input
+              type="number"
+              name="quantity"
+              placeholder="Quantity"
+              value={donateForm.quantity}
+              onChange={(e) => handleChange(e, "Donate Devices")}
+              className={inputClasses}
+            />
             <button type="submit" className={buttonClasses}>
               <span className="relative z-10">Donate Device</span>
             </button>
-          </div>
+          </form>
         );
-  
+
       case "Join Training":
         return (
-          <div className="space-y-6 bg-transparent">
-            <div className="relative">
-              <input type="text" placeholder="Full Name of Register" className={inputClasses} />
-            </div>
-            <div className="relative">
-              <input type="text" placeholder="Full Name of the Participant" className={inputClasses} />
-            </div>
-            <div className="relative">
-              <input type="email" placeholder="Email Address" className={inputClasses} />
-            </div>
+          <form
+            onSubmit={(e) => handleSubmit(e, "Join Training")}
+            className="space-y-6 bg-transparent"
+          >
+            <input
+              type="text"
+              name="registerName"
+              placeholder="Full Name of Register"
+              value={trainingForm.registerName}
+              onChange={(e) => handleChange(e, "Join Training")}
+              className={inputClasses}
+            />
+            <input
+              type="text"
+              name="participantName"
+              placeholder="Full Name of the Participant"
+              value={trainingForm.participantName}
+              onChange={(e) => handleChange(e, "Join Training")}
+              className={inputClasses}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={trainingForm.email}
+              onChange={(e) => handleChange(e, "Join Training")}
+              className={inputClasses}
+            />
             <button type="submit" className={buttonClasses}>
               <span className="relative z-10">Register</span>
             </button>
-          </div>
+          </form>
         );
-  
+
       default:
         return null;
     }
   };
-  
-
 
   return (
     <section
@@ -240,7 +351,7 @@ const CallToAction: React.FC = () => {
         </motion.div>
       </div>
 
-    
+      {/* Modal */}
       {openForm && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className=" border border-gray-600 backdrop-blur-sm bg-white/15 rounded-xl p-6 w-full max-w-md shadow-lg relative">

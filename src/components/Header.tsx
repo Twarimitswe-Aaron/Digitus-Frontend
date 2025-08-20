@@ -89,7 +89,7 @@ const Header = () => {
             className={`text-xl font-bold transition-colors duration-300 ${
               isOnLightBg
                 ? "text-gray-900"
-                : "bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent"
+                : "bg-gradient-to-r from-gray-100 to-gray-400 bg-clip-text text-transparent"
             }`}
           >
             Digitus
@@ -131,7 +131,13 @@ const Header = () => {
           }`}
           aria-label="Toggle menu"
         >
-          {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {isMenuOpen ? (
+            <X className={`h-5 w-5 ${isOnLightBg ? "text-white" : "text-white"}`} />
+          ) : (
+            <Menu
+              className={`h-5 w-5 ${isOnLightBg ? "text-white" : "text-white"}`}
+            />
+          )}
         </button>
       </div>
     </header>
