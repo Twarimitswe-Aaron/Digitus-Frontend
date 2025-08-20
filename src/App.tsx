@@ -1,4 +1,6 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Problem from "./components/Problem";
@@ -9,30 +11,48 @@ import Testimonials from "./components/Testimonials";
 import CallToAction from "./components/CallToAction";
 import Footer from "./components/Footer";
 
-function App() {
-  React.useEffect(() => {
-    if (window.location.hash) {
-      const newUrl = window.location.pathname + window.location.search;
-      window.history.replaceState(null, "", newUrl);
-      window.scrollTo(0, 0);
-    }
-  }, []);
+import Login from "./components/Login";
+
+
+function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+
+  // List of routes where header/footer should be hidden
+  const hideHeaderFooter = ["/login"];
 
   return (
-    <div className="min-h-screen overflow-x-hidden  transition-colors duration-300">
-      <Header />
-      <main>
-        <Hero />
-        <Problem />
-        
-        <Services />
-        <Process />
-        <Locations />
-        <Testimonials />
-        <CallToAction />
-      </main>
-      <Footer />
+    <div className="min-h-screen overflow-x-hidden transition-colors duration-300">
+      {!hideHeaderFooter.includes(location.pathname) && <Header />}
+      <main>{children}</main>
+      {!hideHeaderFooter.includes(location.pathname) && <Footer />}
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* Login route without header/footer */}
+        <Route path="/login" element={<Login />} />
+
+        {/* All other routes inside Layout */}
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Hero />
+              <Problem />
+              <Services />
+              <Process />
+              <Locations />
+              <Testimonials />
+              <CallToAction />
+            </Layout>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
