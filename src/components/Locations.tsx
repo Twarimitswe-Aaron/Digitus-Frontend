@@ -1,7 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Calendar, Users, CheckCircle, Clock, ArrowRight } from 'lucide-react';
 import { locations } from '../data/mockData';
+
+// Provinces and districts (same as Services.tsx)
+const provinces = {
+  Kigali: ["Gasabo", "Kicukiro", "Nyarugenge"],
+  Northern: ["Musanze", "Gicumbi", "Burera", "Rulindo", "Gakenke"],
+  Southern: [
+    "Huye",
+    "Nyaruguru",
+    "Gisagara",
+    "Nyamagabe",
+    "Muhanga",
+    "Kamonyi",
+    "Nyanza",
+    "Ruhango",
+  ],
+  Eastern: [
+    "Rwamagana",
+    "Ngoma",
+    "Bugesera",
+    "Kayonza",
+    "Gatsibo",
+    "Nyagatare",
+    "Kirehe",
+  ],
+  Western: [
+    "Rubavu",
+    "Rusizi",
+    "Nyamasheke",
+    "Karongi",
+    "Ngororero",
+    "Nyabihu",
+    "Rutsiro",
+  ],
+};
 
 const statusConfig = {
   current: {
@@ -22,6 +56,28 @@ const statusConfig = {
 };
 
 const Locations: React.FC = () => {
+  const [visitModal, setVisitModal] = useState(false);
+  const [province, setProvince] = useState("");
+  const [districts, setDistricts] = useState<string[]>([]);
+
+  const inputClasses =
+    "w-full border border-white/50 text-white placeholder-white/70 rounded-md py-2 px-4 bg-transparent backdrop-blur-sm " +
+    "focus:border-white focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200";
+  
+  const selectClasses =
+    "w-full border border-white/50 text-white placeholder-white/70 rounded-md py-2 px-4 bg-transparent backdrop-blur-sm " +
+    "focus:border-white focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200 [&>option]:text-black [&>option]:bg-white";
+  
+  const buttonClasses =
+    "w-full bg-white text-[#08083C] py-4 rounded-md hover:bg-white/90 cursor-pointer " +
+    "focus:outline-none focus:ring-2 focus:ring-white/40 transition-all duration-200 font-medium backdrop-blur-sm";
+
+  const handleProvinceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedProvince = e.target.value;
+    setProvince(selectedProvince);
+    setDistricts(provinces[selectedProvince] || []);
+  };
+
   const currentLocations = locations.filter(loc => loc.status === 'current');
   const upcomingLocations = locations.filter(loc => loc.status === 'upcoming');
   const completedLocations = locations.filter(loc => loc.status === 'completed');
@@ -120,11 +176,90 @@ const Locations: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="bg-white text-[#08083C] font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 cursor-pointer transition-colors duration-300"
+            onClick={() => setVisitModal(true)}
           >
             Request a Visit
           </motion.button>
         </motion.div>
       </div>
+
+             {/* Modal Form */}
+       {visitModal && (
+         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+           <div className="border border-gray-600 backdrop-blur-sm bg-white/15 rounded-xl p-6 w-full max-w-md shadow-lg relative">
+             <h2 className="text-xl font-bold mb-4 text-white">Request Our Services</h2>
+             <div className="space-y-6 bg-transparent">
+               {/* Name */}
+               <div className="relative">
+                 <input
+                   type="text"
+                   placeholder="Full Name"
+                   className={inputClasses}
+                 />
+               </div>
+
+               {/* Email */}
+               <div className="relative">
+                 <input
+                   type="email"
+                   placeholder="Email Address"
+                   className={inputClasses}
+                 />
+               </div>
+
+                               {/* Province */}
+                <div className="relative">
+                  <select
+                    value={province}
+                    onChange={handleProvinceChange}
+                    className={selectClasses}
+                  >
+                    <option value="">Select Province</option>
+                    {Object.keys(provinces).map((prov) => (
+                      <option key={prov} value={prov}>
+                        {prov}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* District */}
+                {districts.length > 0 && (
+                  <div className="relative">
+                    <select className={selectClasses}>
+                      <option value="">Select District</option>
+                      {districts.map((district) => (
+                        <option key={district} value={district}>
+                          {district}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
+               {/* Phone */}
+               <div className="relative">
+                 <input
+                   type="tel"
+                   placeholder="Phone Number"
+                   className={inputClasses}
+                 />
+               </div>
+
+               {/* Submit */}
+               <button type="submit" className={buttonClasses}>
+                 Submit Request
+               </button>
+             </div>
+             <button
+               onClick={() => setVisitModal(false)}
+               className="absolute top-3 right-3 font-bold cursor-pointer text-gray-500 hover:text-gray-800"
+             >
+               ✕
+             </button>
+           </div>
+         </div>
+       )}
     </section>
   );
 };

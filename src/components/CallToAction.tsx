@@ -241,7 +241,7 @@ const CallToAction: React.FC = () => {
       {openForm && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
           <div className=" border border-gray-600 backdrop-blur-sm bg-white/15 rounded-xl p-6 w-full max-w-md shadow-lg relative">
-            <h2 className="text-xl font-bold mb-4">{openForm} Form</h2>
+            <h2 className="text-xl font-bold mb-4 text-white">{openForm}  Form</h2>
             {renderForm()}
             <button
               onClick={() => setOpenForm(null)}
