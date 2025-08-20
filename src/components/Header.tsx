@@ -7,6 +7,8 @@ const Header = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isOnLightBg, setIsOnLightBg] = useState(false);
+  const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
+  const [activeOnTargetColor, setActiveOnTargetColor] = useState(false);
 
   // Handle show/hide header on scroll
   useEffect(() => {
@@ -27,24 +29,34 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // Detect background brightness behind header
+  // Detect background brightness and active section under header
   useEffect(() => {
     const sections = document.querySelectorAll("section");
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const bg = window.getComputedStyle(entry.target).backgroundColor;
-            if (!bg) return;
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length === 0) return;
 
-            const rgb = bg.match(/\d+/g)?.map(Number) || [0, 0, 0];
-            const brightness =
-              (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+        // Choose the most visible section under the header
+        const mostVisible = visible.reduce((a, b) =>
+          a.intersectionRatio > b.intersectionRatio ? a : b
+        );
 
-            setIsOnLightBg(brightness > 200); // threshold: 0-255
-          }
-        });
+        const target = mostVisible.target as HTMLElement;
+        const bg = window.getComputedStyle(target).backgroundColor || "";
+
+        const rgb = bg.match(/\d+/g)?.map(Number) || [0, 0, 0];
+        const brightness = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+        setIsOnLightBg(brightness > 200); // threshold: 0-255
+
+        // Track active section id
+        const id = target.getAttribute("id");
+        if (id) setActiveSectionId(id);
+
+        // Flag if section bg is the target color #08083C (rgb(8, 8, 60))
+        const isTarget08083C = Math.abs(rgb[0] - 8) < 2 && Math.abs(rgb[1] - 8) < 2 && Math.abs(rgb[2] - 60) < 2;
+        setActiveOnTargetColor(Boolean(isTarget08083C));
       },
       { threshold: 0.6 } // detect when 60% of section is under header
     );
@@ -90,20 +102,23 @@ const Header = () => {
             isOnLightBg ? "border-gray-300" : "border-gray-600"
           }`}
         >
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full
-                ${
-                  isOnLightBg
-                    ? "text-gray-900 hover:bg-gray-100"
-                    : "text-white hover:bg-white/10"
-                }`}
-            >
-              {item.name}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const isActive = activeSectionId && item.href === `#${activeSectionId}`;
+            const activeOnTarget = Boolean(isActive && activeOnTargetColor);
+            const baseClasses = "relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full";
+            const inactiveColor = isOnLightBg ? "text-gray-900 hover:bg-gray-100" : "text-white/70 hover:text-white hover:bg-white/10";
+            const activeColor = activeOnTarget ? "text-white" : isOnLightBg ? "text-gray-900" : "text-white";
+
+            return (
+              <a
+                key={item.name}
+                href={item.href}
+                className={`${baseClasses} ${isActive ? activeColor : inactiveColor}`}
+              >
+                {item.name}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Mobile Menu Button */}
