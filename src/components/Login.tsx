@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -7,6 +8,8 @@ const Login = () => {
     email: '',
     password: ''
   });
+
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -25,6 +28,16 @@ const Login = () => {
       {/* Left Side - Login Form */}
       <div className="flex-1 flex items-center justify-center bg-white p-8">
         <div className="w-full max-w-md">
+          
+          {/* Back Button */}
+          <button
+            onClick={() => navigate('/')} 
+            className="flex items-center cursor-pointer text-[#08083C] mb-6 hover:text-[#08083C]/80 transition-colors"
+          >
+            <ArrowLeft className="h-5 w-5 mr-2" />
+           
+          </button>
+
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-[#08083C] mb-2">Welcome Back</h1>
             <p className="text-gray-600">Please sign in to your account</p>
@@ -98,7 +111,7 @@ const Login = () => {
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full bg-[#08083C] text-white py-3 rounded-md hover:bg-[#08083C]/90 focus:outline-none focus:ring-2 focus:ring-[#08083C]/20 transition-all duration-200 font-medium backdrop-blur-sm"
+              className="w-full cursor-pointer bg-[#08083C] text-white py-3 rounded-md hover:bg-[#08083C]/90 focus:outline-none focus:ring-2 focus:ring-[#08083C]/20 transition-all duration-200 font-medium backdrop-blur-sm"
             >
               Sign In
             </button>
@@ -116,9 +129,9 @@ const Login = () => {
           muted
           playsInline
         ></video>
-        <div className="absolute inset-0 bg-[#08083C]/10 flex items-center justify-center p-12">
+        <div className="absolute inset-0 bg-[#08083C]/20 flex items-center justify-center p-12">
           <div className="text-center text-white max-w-lg">
-            <h2 className="text-3xl font-bold mb-4">Become a Volunteer Trainer</h2>
+            <h2 className="text-3xl font-bold mb-4 text-[#08083C] ">Become a Volunteer Trainer</h2>
             <p className="text-white/80 text-lg leading-relaxed">
               Share your skills, inspire others, and make an impact by training as a volunteer. 
               Join our mission to empower learners and create meaningful change through education.
