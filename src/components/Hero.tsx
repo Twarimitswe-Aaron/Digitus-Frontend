@@ -39,6 +39,13 @@ const LotteryCounter: React.FC<{ target: number; suffix?: string; duration?: num
 };
 
 const Hero: React.FC = () => {
+  const handleScrollToCta = () => {
+    const el = document.getElementById('cta');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className="relative min-h-screen pt-5 sm:pt-0 flex items-center justify-center overflow-hidden">
       {/* Background Video with Overlay */}
@@ -92,6 +99,7 @@ const Hero: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={handleScrollToCta}
               className="bg-gradient-to-r text-white from-gray-900 cursor-pointer to-gray-600 flex items-center space-x-2 rounded-xl text-lg px-8 py-4"
             >
               <span>{heroData.ctaText}</span>
