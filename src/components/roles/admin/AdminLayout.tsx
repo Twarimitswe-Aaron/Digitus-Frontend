@@ -9,6 +9,11 @@ const AdminLayout: React.FC = () => {
 		<div className="flex h-full overflow-hidden">
 			{/* Sidebar */}
 			<aside className="fixed left-0 top-0 h-screen w-64 p-4 border-r border-white/20 bg-[#08083C]/80 backdrop-blur-xl z-10">
+				<div className="mb-4">
+					<NavLink to="/admin" className="block px-3 py-2 rounded-lg text-white font-extrabold text-xl tracking-wide">
+						Digitus
+					</NavLink>
+				</div>
 				<nav>
 					<ul className="space-y-2">
 						<li>
