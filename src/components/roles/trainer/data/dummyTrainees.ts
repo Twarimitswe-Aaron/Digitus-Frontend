@@ -1,0 +1,61 @@
+export type Trainee = {
+	id: string;
+	firstName: string;
+	secondName: string;
+	age: number;
+	city: string;
+	address: string;
+};
+
+export const dummyTrainees: Trainee[] = [
+	{ id: "t1", firstName: "Alice", secondName: "Uwase", age: 66, city: "Kigali", address: "Kicukiro" },
+	{ id: "t2", firstName: "Jean", secondName: "Hakorimana", age: 71, city: "Huye", address: "Tumba" },
+	{ id: "t3", firstName: "Marie", secondName: "Mukamana", age: 63, city: "Musanze", address: "Muhoza" },
+	{ id: "t4", firstName: "Emmanuel", secondName: "Ndayishimiye", age: 68, city: "Rubavu", address: "Gisenyi" },
+	{ id: "t5", firstName: "Joseph", secondName: "Mugisha", age: 70, city: "Nyamirambo", address: "Nyarugenge" },
+	{ id: "t6", firstName: "Bernadette", secondName: "Iradukunda", age: 62, city: "Rwamagana", address: "Karenge" },
+	{ id: "t7", firstName: "Pierre", secondName: "Habimana", age: 64, city: "Muhanga", address: "Nyamabuye" },
+	{ id: "t8", firstName: "Claudine", secondName: "Mukeshimana", age: 67, city: "Gicumbi", address: "Byumba" },
+	{ id: "t9", firstName: "Alain", secondName: "Niyonzima", age: 72, city: "Bugesera", address: "Nyamata" },
+	{ id: "t10", firstName: "Chantal", secondName: "Uwimana", age: 65, city: "Musanze", address: "Cyuve" },
+	{ id: "t11", firstName: "Francois", secondName: "Nkurunziza", age: 69, city: "Kayonza", address: "Rukara" },
+	{ id: "t12", firstName: "Beatrice", secondName: "Uwera", age: 61, city: "Huye", address: "Ngoma" },
+	{ id: "t13", firstName: "Eric", secondName: "Ndahiro", age: 73, city: "Rusizi", address: "Kamembe" },
+	{ id: "t14", firstName: "Diane", secondName: "Ingabire", age: 64, city: "Karongi", address: "Bwishyura" },
+	{ id: "t15", firstName: "Samuel", secondName: "Hategekimana", age: 66, city: "Rutsiro", address: "Mushonyi" },
+	{ id: "t16", firstName: "Anita", secondName: "Irakoze", age: 62, city: "Rubavu", address: "Kanama" },
+	{ id: "t17", firstName: "Patrick", secondName: "Twagirimana", age: 70, city: "Nyabihu", address: "Mukamira" },
+	{ id: "t18", firstName: "Josiane", secondName: "Mukandoli", age: 63, city: "Ngororero", address: "Ngororero" },
+	{ id: "t19", firstName: "Thierry", secondName: "Ndayambaje", age: 68, city: "Gakenke", address: "Gakenke" },
+	{ id: "t20", firstName: "Consolee", secondName: "Uwitonze", age: 65, city: "Rulindo", address: "Kinihira" },
+	{ id: "t21", firstName: "Alexis", secondName: "Nsengiyumva", age: 71, city: "Kicukiro", address: "Gatenga" },
+	{ id: "t22", firstName: "Yvonne", secondName: "Mukamana", age: 60, city: "Gasabo", address: "Kimironko" },
+	{ id: "t23", firstName: "Claude", secondName: "Bizimana", age: 69, city: "Nyarugenge", address: "Nyamirambo" },
+	{ id: "t24", firstName: "Eugenie", secondName: "Ishimwe", age: 62, city: "Nyanza", address: "Busasamana" },
+	{ id: "t25", firstName: "Aimable", secondName: "Munyaneza", age: 67, city: "Nyaruguru", address: "Kibeho" },
+	{ id: "t26", firstName: "Angelique", secondName: "Murekatete", age: 64, city: "Gisagara", address: "Save" },
+	{ id: "t27", firstName: "Olivier", secondName: "Ntawangundi", age: 66, city: "Nyagatare", address: "Nyagatare" },
+	{ id: "t28", firstName: "Vestine", secondName: "Umuraza", age: 61, city: "Gatsibo", address: "Kabarore" },
+	{ id: "t29", firstName: "Jean Paul", secondName: "Mugabo", age: 72, city: "Kirehe", address: "Kigarama" },
+	{ id: "t30", firstName: "Alice", secondName: "Mukandahiro", age: 63, city: "Rwamagana", address: "Fumbwe" },
+	{ id: "t31", firstName: "Ismael", secondName: "Hakizimana", age: 70, city: "Kayonza", address: "Murama" },
+	{ id: "t32", firstName: "Rose", secondName: "Nyirahabineza", age: 65, city: "Bugesera", address: "Ruhuha" },
+	{ id: "t33", firstName: "Jeanette", secondName: "Uwizeye", age: 66, city: "Kicukiro", address: "Nyarugunga" },
+	{ id: "t34", firstName: "Fidele", secondName: "Niyonshuti", age: 62, city: "Gasabo", address: "Remera" },
+	{ id: "t35", firstName: "Celestine", secondName: "Mukamana", age: 69, city: "Nyarugenge", address: "Gitega" },
+	{ id: "t36", firstName: "Antoine", secondName: "Ruberwa", age: 71, city: "Huye", address: "Sov" },
+	{ id: "t37", firstName: "Flora", secondName: "Uwamahoro", age: 60, city: "Musanze", address: "Muhoza" },
+	{ id: "t38", firstName: "Denis", secondName: "Nkeramugaba", age: 68, city: "Rubavu", address: "Rugerero" },
+	{ id: "t39", firstName: "Assumpta", secondName: "Mukamana", age: 64, city: "Karongi", address: "Rubengera" },
+	{ id: "t40", firstName: "Laurent", secondName: "Ngabonziza", age: 72, city: "Rusizi", address: "Giheke" },
+	{ id: "t41", firstName: "Regine", secondName: "Uwera", age: 63, city: "Ngororero", address: "Kabaya" },
+	{ id: "t42", firstName: "Celestin", secondName: "Maniraho", age: 67, city: "Rutsiro", address: "Boneza" },
+	{ id: "t43", firstName: "Moses", secondName: "Kagabo", age: 61, city: "Gicumbi", address: "Rukomo" },
+	{ id: "t44", firstName: "Immaculee", secondName: "Niyonshuti", age: 70, city: "Rulindo", address: "Bushoki" },
+	{ id: "t45", firstName: "Janvier", secondName: "Byiringiro", age: 62, city: "Gakenke", address: "Mugunga" },
+	{ id: "t46", firstName: "Olive", secondName: "Umutoni", age: 66, city: "Nyagatare", address: "Rwempasha" },
+	{ id: "t47", firstName: "Prosper", secondName: "Nshimiyimana", age: 65, city: "Gatsibo", address: "Gasange" },
+	{ id: "t48", firstName: "Speciose", secondName: "Mukamana", age: 69, city: "Kirehe", address: "Mahama" },
+	{ id: "t49", firstName: "Valens", secondName: "Ndayizeye", age: 60, city: "Kayonza", address: "Kabarondo" },
+	{ id: "t50", firstName: "Beatha", secondName: "Mukeshimana", age: 71, city: "Rwamagana", address: "Nyakariro" },
+]; 

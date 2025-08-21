@@ -12,19 +12,24 @@ import CallToAction from "./components/CallToAction";
 import Footer from "./components/Footer";
 
 import Login from "./components/Login";
+import Trainer from "./components/roles/Trainer";
+import HubManager from "./components/roles/HubManager";
+import Admin from "./components/roles/Admin";
 
 
 function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
 
-  // List of routes where header/footer should be hidden
-  const hideHeaderFooter = ["/login"];
+  const isRolePortal = ["/trainer", "/admin", "/hubmanager"].some((p) =>
+    location.pathname.startsWith(p)
+  );
+  const hideHeaderFooter = location.pathname === "/login" || isRolePortal;
 
   return (
     <div className="min-h-screen overflow-x-hidden transition-colors duration-300">
-      {!hideHeaderFooter.includes(location.pathname) && <Header />}
+      {!hideHeaderFooter && <Header />}
       <main>{children}</main>
-      {!hideHeaderFooter.includes(location.pathname) && <Footer />}
+      {!hideHeaderFooter && <Footer />}
     </div>
   );
 }
@@ -35,6 +40,32 @@ function App() {
       <Routes>
         {/* Login route without header/footer */}
         <Route path="/login" element={<Login />} />
+
+        {/* Role-based routes (wrapped in Layout for consistent header/footer) */}
+        <Route
+          path="/trainer/*"
+          element={
+            <Layout>
+              <Trainer />
+            </Layout>
+          }
+        />
+        <Route
+          path="/hubmanager/*"
+          element={
+            <Layout>
+              <HubManager />
+            </Layout>
+          }
+        />
+        <Route
+          path="/admin/*"
+          element={
+            <Layout>
+              <Admin />
+            </Layout>
+          }
+        />
 
         {/* All other routes inside Layout */}
         <Route
